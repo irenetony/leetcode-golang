@@ -133,6 +133,7 @@ func TestCase1() {
 	fmt.Printf("word [%s] exist? %t\n", "badd", i.Search("badd"))
 	fmt.Printf("word [%s] exist? %t\n", "...", i.Search("..."))
 	fmt.Printf("word [%s] exist? %t\n", "b.e", i.Search("b.e"))
+	fmt.Printf("word [%s] exist? %t\n", "ma.", i.Search("ma."))
 }
 
 func main() {
