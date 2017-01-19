@@ -4,38 +4,11 @@ import (
 	"fmt"
 	"strings"
 	"strconv"
+	ds "leetcode/datastructure"
 )
 
-type Stack struct {
-	top  *Element
-	size int
-}
-
-type Element struct {
-	value interface{}
-	next  *Element
-}
-
-func (stack *Stack) Push(value interface{}) {
-	stack.top = &Element{value, stack.top}
-	stack.size++
-}
-
-func (stack *Stack) Len() int {
-	return stack.size
-}
-
-func (stack *Stack) Pop() (value interface{}) {
-	if stack.size > 0 {
-		value, stack.top = stack.top.value, stack.top.next
-		stack.size--
-		return
-	}
-	return nil
-}
-
 func EvalRPN(tokens []string) int {
-	var numStack Stack
+	var numStack ds.Stack
 	for _, token := range tokens {
 		switch token {
 		case "+":
