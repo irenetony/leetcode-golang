@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
-	"strconv"
+	"leetcode/util"
 )
 
 func Combine(n, k int) [][]int {
@@ -55,11 +55,11 @@ func CopyArray(array []int) []int {
 	return res
 }
 
-func TestCombine(n,k int) {
+func TestCombine(n, k int) {
 	array := Combine(n, k)
 	fmt.Printf("[\n")
 	for _, val := range array {
-		fmt.Printf("\t[%s]\n", strings.Join(IntArray2StringArray(RevertArray(val)), ","))
+		fmt.Printf("\t[%s]\n", strings.Join(util.IntArray2StringArray(RevertArray(val)), ","))
 	}
 	fmt.Printf("\n]\n")
 }
@@ -72,15 +72,7 @@ func RevertArray(array []int) []int {
 	return res
 }
 
-func IntArray2StringArray(array []int) []string {
-	var res []string
-	for _, val := range array {
-		res = append(res, strconv.Itoa(val))
-	}
-	return res
-}
-
 func main() {
-	TestCombine(4,2)
-	TestCombine(4,3)
+	TestCombine(4, 2)
+	TestCombine(4, 3)
 }

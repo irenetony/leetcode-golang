@@ -4,7 +4,7 @@ import (
 	"fmt"
 	ds "leetcode/datastructure"
 	"strings"
-	"strconv"
+	"leetcode/util"
 )
 
 type TreeNode struct {
@@ -68,13 +68,6 @@ func ZigzagLevelOrder(root *TreeNode) (res [][]int) {
 	return
 }
 
-func IntArray2StringArray(array []int) (res []string) {
-	for _, val := range array {
-		res = append(res, strconv.Itoa(val))
-	}
-	return
-}
-
 func TestZigzagLevelOrder1() {
 	root := &TreeNode{val:3}
 	nineNode := &TreeNode{val:9}
@@ -90,7 +83,7 @@ func TestZigzagLevelOrder1() {
 	res := ZigzagLevelOrder(root)
 	fmt.Printf("[\n")
 	for idx, val := range res {
-		tmp := IntArray2StringArray(val)
+		tmp := util.IntArray2StringArray(val)
 		if idx != len(res)-1 {
 			fmt.Printf("\t[%s],\n", strings.Join(tmp, ","))
 		} else {
@@ -123,7 +116,7 @@ func TestZigzagLevelOrder2() {
 	res := ZigzagLevelOrder(root)
 	fmt.Printf("[\n")
 	for idx, val := range res {
-		tmp := IntArray2StringArray(val)
+		tmp := util.IntArray2StringArray(val)
 		if idx != len(res)-1 {
 			fmt.Printf("\t[%s],\n", strings.Join(tmp, ","))
 		} else {
