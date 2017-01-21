@@ -7,13 +7,7 @@ import (
 	"leetcode/util"
 )
 
-type TreeNode struct {
-	val   int
-	left  *TreeNode
-	right *TreeNode
-}
-
-func ZigzagLevelOrder(root *TreeNode) (res [][]int) {
+func ZigzagLevelOrder(root *ds.TreeNode) (res [][]int) {
 	res = [][]int{}
 	if root == nil {
 		return
@@ -31,23 +25,23 @@ func ZigzagLevelOrder(root *TreeNode) (res [][]int) {
 			if err != nil {
 				panic(err)
 			}
-			currArray = append(currArray, curNode.(*TreeNode).val)
+			currArray = append(currArray, curNode.(*ds.TreeNode).Val)
 
 			if idx%2 == 0 { // 自左向右把子节点放到stack
-				leftNode := curNode.(*TreeNode).left
+				leftNode := curNode.(*ds.TreeNode).Left
 				if leftNode != nil {
 					stack.Push(leftNode)
 				}
-				rightNode := curNode.(*TreeNode).right
+				rightNode := curNode.(*ds.TreeNode).Right
 				if rightNode != nil {
 					stack.Push(rightNode)
 				}
 			} else { // 自右向左把自节点放到stack
-				rightNode := curNode.(*TreeNode).right
+				rightNode := curNode.(*ds.TreeNode).Right
 				if rightNode != nil {
 					stack.Push(rightNode)
 				}
-				leftNode := curNode.(*TreeNode).left
+				leftNode := curNode.(*ds.TreeNode).Left
 				if leftNode != nil {
 					stack.Push(leftNode)
 				}
@@ -69,16 +63,16 @@ func ZigzagLevelOrder(root *TreeNode) (res [][]int) {
 }
 
 func TestZigzagLevelOrder1() {
-	root := &TreeNode{val:3}
-	nineNode := &TreeNode{val:9}
-	twentyNode := &TreeNode{val:20}
-	root.left = nineNode
-	root.right = twentyNode
+	root := &ds.TreeNode{Val:3}
+	nineNode := &ds.TreeNode{Val:9}
+	twentyNode := &ds.TreeNode{Val:20}
+	root.Left = nineNode
+	root.Right = twentyNode
 
-	fifteenNode := &TreeNode{val:15}
-	sevenNode := &TreeNode{val:7}
-	twentyNode.left = fifteenNode
-	twentyNode.right = sevenNode
+	fifteenNode := &ds.TreeNode{Val:15}
+	sevenNode := &ds.TreeNode{Val:7}
+	twentyNode.Left = fifteenNode
+	twentyNode.Right = sevenNode
 
 	res := ZigzagLevelOrder(root)
 	fmt.Printf("[\n")
@@ -94,24 +88,24 @@ func TestZigzagLevelOrder1() {
 }
 
 func TestZigzagLevelOrder2() {
-	root := &TreeNode{val:1}
-	twoNode := &TreeNode{val:2}
-	root.right = twoNode
+	root := &ds.TreeNode{Val:1}
+	twoNode := &ds.TreeNode{Val:2}
+	root.Right = twoNode
 
-	threeNode := &TreeNode{val:3}
-	fourNode := &TreeNode{val:4}
-	twoNode.left = threeNode
-	twoNode.right = fourNode
+	threeNode := &ds.TreeNode{Val:3}
+	fourNode := &ds.TreeNode{Val:4}
+	twoNode.Left = threeNode
+	twoNode.Right = fourNode
 
-	fiveNode := &TreeNode{val:5}
-	sixNode := &TreeNode{val:6}
-	threeNode.left = fiveNode
-	threeNode.right = sixNode
+	fiveNode := &ds.TreeNode{Val:5}
+	sixNode := &ds.TreeNode{Val:6}
+	threeNode.Left = fiveNode
+	threeNode.Right = sixNode
 
-	sevenNode := &TreeNode{val:7}
-	eightNode := &TreeNode{val:8}
-	fourNode.left = sevenNode
-	fourNode.right = eightNode
+	sevenNode := &ds.TreeNode{Val:7}
+	eightNode := &ds.TreeNode{Val:8}
+	fourNode.Left = sevenNode
+	fourNode.Right = eightNode
 
 	res := ZigzagLevelOrder(root)
 	fmt.Printf("[\n")
