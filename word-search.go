@@ -6,7 +6,6 @@ import (
 )
 
 func Exist(board [][]rune, word string) bool {
-	// FIXME
 	flagBoard := make([][]bool, len(board))
 	for i := 0; i < len(board); i++ {
 		flagBoard[i] = make([]bool, len(board[i]))
