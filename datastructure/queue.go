@@ -39,7 +39,7 @@ func (q *Queue) Dequeue() (value interface{}, err error) {
 }
 
 func (q *Queue) Len() int {
-	return q.size;
+	return q.size
 }
 
 func NewQueue() *Queue {
