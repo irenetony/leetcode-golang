@@ -39,12 +39,11 @@ func existRecur(board [][]rune, word string, i, j int, flagBoard [][]bool) bool 
 	}
 
 	// right
-	right := false
 	if j+1 < len(board[0]) {
 		if !flagBoard[i][j + 1] {
 			r := copyArray(flagBoard)
 			r[i][j + 1] = true
-			right = existRecur(board, word[1:], i, j+1, r)
+			right := existRecur(board, word[1:], i, j+1, r)
 			if right {
 				return true
 			}
@@ -52,12 +51,11 @@ func existRecur(board [][]rune, word string, i, j int, flagBoard [][]bool) bool 
 	}
 
 	// left
-	left := false
 	if j-1 >= 0 {
 		if !flagBoard[i][j - 1] {
 			l := copyArray(flagBoard)
 			l[i][j - 1] = true
-			left = existRecur(board, word[1:], i, j-1, l)
+			left := existRecur(board, word[1:], i, j-1, l)
 			if left {
 				return true
 			}
@@ -65,12 +63,11 @@ func existRecur(board [][]rune, word string, i, j int, flagBoard [][]bool) bool 
 	}
 
 	// up
-	up := false
 	if i-1 >= 0 {
 		if !flagBoard[i - 1][j] {
 			u := copyArray(flagBoard)
 			u[i - 1][j] = true
-			up = existRecur(board, word[1:], i-1, j, u)
+			up := existRecur(board, word[1:], i-1, j, u)
 			if up {
 				return true
 			}
@@ -78,12 +75,11 @@ func existRecur(board [][]rune, word string, i, j int, flagBoard [][]bool) bool 
 	}
 
 	// down
-	down := false
 	if i+1 < len(board) {
 		if !flagBoard[i + 1][j] {
 			d := copyArray(flagBoard)
 			d[i + 1][j] = true
-			down = existRecur(board, word[1:], i+1, j, d)
+			down := existRecur(board, word[1:], i+1, j, d)
 			if down {
 				return true
 			}
