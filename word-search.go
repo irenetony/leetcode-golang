@@ -100,14 +100,6 @@ func copyArray(array [][]bool) (res [][]bool) {
 	return
 }
 
-func resetFlagBoard(flagBoard [][]bool) {
-	for i := 0; i < len(flagBoard); i++ {
-		for j := 0; j < len(flagBoard[i]); j++ {
-			flagBoard[i][j] = false
-		}
-	}
-}
-
 func TestExist() {
 	board := [][]rune{
 		{'A', 'B', 'C', 'E'},
