@@ -30,7 +30,7 @@ func MergeTwoLists(l1, l2 *ListNode) *ListNode {
 				p1 = p1.Next
 			} else {
 				tmp = &ListNode{
-					Val:p2.Val,
+					Val: p2.Val,
 				}
 				p2 = p2.Next
 			}
@@ -45,7 +45,7 @@ func MergeTwoLists(l1, l2 *ListNode) *ListNode {
 
 		for p1 != nil {
 			tmp := &ListNode{
-				Val :p1.Val,
+				Val: p1.Val,
 			}
 			last.Next = tmp
 			last = tmp
@@ -54,7 +54,7 @@ func MergeTwoLists(l1, l2 *ListNode) *ListNode {
 
 		for p2 != nil {
 			tmp := &ListNode{
-				Val :p2.Val,
+				Val: p2.Val,
 			}
 			last.Next = tmp
 			last = tmp
@@ -67,32 +67,32 @@ func MergeTwoLists(l1, l2 *ListNode) *ListNode {
 
 func TestMergeTwoLists1() {
 	l1 := &ListNode{
-		Val:1,
+		Val: 1,
 	}
 	l3 := &ListNode{
-		Val:3,
+		Val: 3,
 	}
 	l4 := &ListNode{
-		Val:4,
+		Val: 4,
 	}
 	l6 := &ListNode{
-		Val:6,
+		Val: 6,
 	}
 	l7 := &ListNode{
-		Val:7,
+		Val: 7,
 	}
 
 	l2 := &ListNode{
-		Val:2,
+		Val: 2,
 	}
 	l8 := &ListNode{
-		Val:8,
+		Val: 8,
 	}
 	l9 := &ListNode{
-		Val:9,
+		Val: 9,
 	}
 	l10 := &ListNode{
-		Val:10,
+		Val: 10,
 	}
 
 	l1.Next = l3
@@ -114,41 +114,41 @@ func TestMergeTwoLists1() {
 
 func TestMergeTwoLists2() {
 	l1 := &ListNode{
-		Val:1,
+		Val: 1,
 	}
 	l3 := &ListNode{
-		Val:3,
+		Val: 3,
 	}
 	l4 := &ListNode{
-		Val:4,
+		Val: 4,
 	}
 	l6 := &ListNode{
-		Val:6,
+		Val: 6,
 	}
 	l7 := &ListNode{
-		Val:7,
+		Val: 7,
 	}
 	l11 := &ListNode{
-		Val:11,
+		Val: 11,
 	}
 	l12 := &ListNode{
-		Val:12,
+		Val: 12,
 	}
 	l13 := &ListNode{
-		Val:13,
+		Val: 13,
 	}
 
 	l2 := &ListNode{
-		Val:2,
+		Val: 2,
 	}
 	l8 := &ListNode{
-		Val:8,
+		Val: 8,
 	}
 	l9 := &ListNode{
-		Val:9,
+		Val: 9,
 	}
 	l10 := &ListNode{
-		Val:10,
+		Val: 10,
 	}
 
 	l1.Next = l3
@@ -175,16 +175,16 @@ func TestMergeTwoLists3() {
 	var l1 *ListNode = nil
 
 	l2 := &ListNode{
-		Val:2,
+		Val: 2,
 	}
 	l8 := &ListNode{
-		Val:8,
+		Val: 8,
 	}
 	l9 := &ListNode{
-		Val:9,
+		Val: 9,
 	}
 	l10 := &ListNode{
-		Val:10,
+		Val: 10,
 	}
 
 	l2.Next = l8

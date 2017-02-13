@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	ds "leetcode/datastructure"
-	"strings"
 	"leetcode/util"
+	"strings"
 )
 
 func ZigzagLevelOrder(root *ds.TreeNode) (res [][]int) {
@@ -63,14 +63,14 @@ func ZigzagLevelOrder(root *ds.TreeNode) (res [][]int) {
 }
 
 func TestZigzagLevelOrder1() {
-	root := &ds.TreeNode{Val:3}
-	nineNode := &ds.TreeNode{Val:9}
-	twentyNode := &ds.TreeNode{Val:20}
+	root := &ds.TreeNode{Val: 3}
+	nineNode := &ds.TreeNode{Val: 9}
+	twentyNode := &ds.TreeNode{Val: 20}
 	root.Left = nineNode
 	root.Right = twentyNode
 
-	fifteenNode := &ds.TreeNode{Val:15}
-	sevenNode := &ds.TreeNode{Val:7}
+	fifteenNode := &ds.TreeNode{Val: 15}
+	sevenNode := &ds.TreeNode{Val: 7}
 	twentyNode.Left = fifteenNode
 	twentyNode.Right = sevenNode
 
@@ -88,22 +88,22 @@ func TestZigzagLevelOrder1() {
 }
 
 func TestZigzagLevelOrder2() {
-	root := &ds.TreeNode{Val:1}
-	twoNode := &ds.TreeNode{Val:2}
+	root := &ds.TreeNode{Val: 1}
+	twoNode := &ds.TreeNode{Val: 2}
 	root.Right = twoNode
 
-	threeNode := &ds.TreeNode{Val:3}
-	fourNode := &ds.TreeNode{Val:4}
+	threeNode := &ds.TreeNode{Val: 3}
+	fourNode := &ds.TreeNode{Val: 4}
 	twoNode.Left = threeNode
 	twoNode.Right = fourNode
 
-	fiveNode := &ds.TreeNode{Val:5}
-	sixNode := &ds.TreeNode{Val:6}
+	fiveNode := &ds.TreeNode{Val: 5}
+	sixNode := &ds.TreeNode{Val: 6}
 	threeNode.Left = fiveNode
 	threeNode.Right = sixNode
 
-	sevenNode := &ds.TreeNode{Val:7}
-	eightNode := &ds.TreeNode{Val:8}
+	sevenNode := &ds.TreeNode{Val: 7}
+	eightNode := &ds.TreeNode{Val: 8}
 	fourNode.Left = sevenNode
 	fourNode.Right = eightNode
 

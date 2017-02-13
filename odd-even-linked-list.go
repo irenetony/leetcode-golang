@@ -55,7 +55,7 @@ func TestOddEvenList0() {
 
 func TestOddEvenList1() {
 	l1 := &ListNode{
-		Val:1,
+		Val: 1,
 	}
 	res := OddEvenList(l1)
 	for res != nil {
@@ -67,10 +67,10 @@ func TestOddEvenList1() {
 
 func TestOddEvenList2() {
 	l1 := &ListNode{
-		Val:1,
+		Val: 1,
 	}
 	l2 := &ListNode{
-		Val:2,
+		Val: 2,
 	}
 	l1.Next = l2
 
@@ -84,13 +84,13 @@ func TestOddEvenList2() {
 
 func TestOddEvenList3() {
 	l1 := &ListNode{
-		Val:1,
+		Val: 1,
 	}
 	l2 := &ListNode{
-		Val:2,
+		Val: 2,
 	}
 	l3 := &ListNode{
-		Val:3,
+		Val: 3,
 	}
 	l1.Next = l2
 	l2.Next = l3
@@ -105,16 +105,16 @@ func TestOddEvenList3() {
 
 func TestOddEvenList4() {
 	l1 := &ListNode{
-		Val:1,
+		Val: 1,
 	}
 	l2 := &ListNode{
-		Val:2,
+		Val: 2,
 	}
 	l3 := &ListNode{
-		Val:3,
+		Val: 3,
 	}
 	l4 := &ListNode{
-		Val:4,
+		Val: 4,
 	}
 	l1.Next = l2
 	l2.Next = l3
@@ -130,19 +130,19 @@ func TestOddEvenList4() {
 
 func TestOddEvenList5() {
 	l1 := &ListNode{
-		Val:1,
+		Val: 1,
 	}
 	l2 := &ListNode{
-		Val:2,
+		Val: 2,
 	}
 	l3 := &ListNode{
-		Val:3,
+		Val: 3,
 	}
 	l4 := &ListNode{
-		Val:4,
+		Val: 4,
 	}
 	l5 := &ListNode{
-		Val:5,
+		Val: 5,
 	}
 	l1.Next = l2
 	l2.Next = l3
@@ -159,22 +159,22 @@ func TestOddEvenList5() {
 
 func TestOddEvenList6() {
 	l1 := &ListNode{
-		Val:1,
+		Val: 1,
 	}
 	l2 := &ListNode{
-		Val:2,
+		Val: 2,
 	}
 	l3 := &ListNode{
-		Val:3,
+		Val: 3,
 	}
 	l4 := &ListNode{
-		Val:4,
+		Val: 4,
 	}
 	l5 := &ListNode{
-		Val:5,
+		Val: 5,
 	}
 	l6 := &ListNode{
-		Val:6,
+		Val: 6,
 	}
 	l1.Next = l2
 	l2.Next = l3

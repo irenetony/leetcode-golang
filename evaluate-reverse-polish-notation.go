@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"strings"
-	"strconv"
 	ds "leetcode/datastructure"
+	"strconv"
+	"strings"
 )
 
 func EvalRPN(tokens []string) int {

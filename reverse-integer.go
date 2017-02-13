@@ -8,18 +8,18 @@ func reverse(x int) int {
 		return 0
 	} else if x > 0 {
 		for i := x / 10; i != 0; i = i / 10 {
-			result = result * 10 + x % 10;
+			result = result*10 + x%10
 			x = x / 10
 		}
-		result = result * 10 + x % 10
+		result = result*10 + x%10
 	} else {
 		x = -x
 		for i := x / 10; i != 0; i = i / 10 {
-			result = result * 10 + x % 10;
+			result = result*10 + x%10
 			x = x / 10
 		}
-		result = result * 10 + x % 10
-		result = - result
+		result = result*10 + x%10
+		result = -result
 	}
 	return result
 }

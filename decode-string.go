@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"strconv"
-	"os"
 	ds "leetcode/datastructure"
+	"os"
+	"strconv"
 )
 
 const FORMAT_STRING = "s = \"%s\",retrun \"%s\"\n"

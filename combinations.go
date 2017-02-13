@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"leetcode/util"
+	"strings"
 )
 
 func Combine(n, k int) [][]int {

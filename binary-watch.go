@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 func ReadBinaryWatch(num int) []string {
@@ -40,7 +40,7 @@ func HourTime(num int) []int {
 	return Combination([]int{8, 4, 2, 1}, num)
 }
 
-func MinuteTime(num int) [] int {
+func MinuteTime(num int) []int {
 	return Combination([]int{32, 16, 8, 4, 2, 1}, num)
 }
 

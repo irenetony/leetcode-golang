@@ -1,8 +1,8 @@
 package main
 
 import (
-	ds "leetcode/datastructure"
 	"fmt"
+	ds "leetcode/datastructure"
 	"leetcode/util"
 	"strings"
 )
@@ -51,14 +51,14 @@ func RightSideView(root *ds.TreeNode) (res []int) {
 }
 
 func TestRightSideView1() {
-	root := &ds.TreeNode{Val:1}
-	twoNode := &ds.TreeNode{Val:2}
-	threeNode := &ds.TreeNode{Val:3}
+	root := &ds.TreeNode{Val: 1}
+	twoNode := &ds.TreeNode{Val: 2}
+	threeNode := &ds.TreeNode{Val: 3}
 	root.Left = twoNode
 	root.Right = threeNode
 
-	fourNode := &ds.TreeNode{Val:4}
-	fiveNode := &ds.TreeNode{Val:5}
+	fourNode := &ds.TreeNode{Val: 4}
+	fiveNode := &ds.TreeNode{Val: 5}
 	twoNode.Right = fiveNode
 	threeNode.Right = fourNode
 
@@ -67,18 +67,18 @@ func TestRightSideView1() {
 }
 
 func TestRightSideView2() {
-	root := &ds.TreeNode{Val:1}
-	twoNode := &ds.TreeNode{Val:2}
-	threeNode := &ds.TreeNode{Val:3}
+	root := &ds.TreeNode{Val: 1}
+	twoNode := &ds.TreeNode{Val: 2}
+	threeNode := &ds.TreeNode{Val: 3}
 	root.Left = twoNode
 	root.Right = threeNode
 
-	fourNode := &ds.TreeNode{Val:4}
-	fiveNode := &ds.TreeNode{Val:5}
+	fourNode := &ds.TreeNode{Val: 4}
+	fiveNode := &ds.TreeNode{Val: 5}
 	twoNode.Right = fiveNode
 	threeNode.Right = fourNode
 
-	sixNode := &ds.TreeNode{Val:6}
+	sixNode := &ds.TreeNode{Val: 6}
 	fiveNode.Left = sixNode
 
 	res := RightSideView(root)

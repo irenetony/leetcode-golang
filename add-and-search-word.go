@@ -32,10 +32,10 @@ func (d *MyDicitionary) AddWord(word string) {
 				curChildNodes = curChildNodes[char].ChildNodes
 			} else {
 				if i == len(word)-1 {
-					curChildNodes[char] = &Node{IsLeafNode:true}
+					curChildNodes[char] = &Node{IsLeafNode: true}
 					curChildNodes = curChildNodes[char].ChildNodes
 				} else {
-					curChildNodes[char] = &Node{IsLeafNode:false}
+					curChildNodes[char] = &Node{IsLeafNode: false}
 					parentNode = curChildNodes[char]
 					curChildNodes = curChildNodes[char].ChildNodes
 				}
@@ -43,9 +43,9 @@ func (d *MyDicitionary) AddWord(word string) {
 		} else {
 			curChildNodes = make(map[rune]*Node)
 			if i == len(word)-1 {
-				curChildNodes[char] = &Node{IsLeafNode:true}
+				curChildNodes[char] = &Node{IsLeafNode: true}
 			} else {
-				curChildNodes[char] = &Node{IsLeafNode:false}
+				curChildNodes[char] = &Node{IsLeafNode: false}
 			}
 			parentNode.ChildNodes = curChildNodes
 			parentNode = curChildNodes[char]
@@ -65,7 +65,7 @@ func (d *MyDicitionary) Search(word string) bool {
 					return true
 				} else {
 					for _, v := range curChildNodes {
-						if exists := SearchStarWord(word[i + 1:], v.ChildNodes); exists {
+						if exists := SearchStarWord(word[i+1:], v.ChildNodes); exists {
 							return true
 						}
 					}
@@ -98,7 +98,7 @@ func SearchStarWord(word string, childNodes map[rune]*Node) bool {
 					return true
 				} else {
 					for _, v := range childNodes {
-						if exists := SearchStarWord(word[i + 1:], v.ChildNodes); exists {
+						if exists := SearchStarWord(word[i+1:], v.ChildNodes); exists {
 							return true
 						}
 					}
