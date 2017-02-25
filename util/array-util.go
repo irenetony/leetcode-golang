@@ -8,3 +8,10 @@ func IntArray2StringArray(array []int) (res []string) {
 	}
 	return
 }
+
+func RuneArray2StringArray(array []rune) (res []string) {
+	for _, val := range array {
+		res = append(res, strconv.QuoteRune(val))
+	}
+	return
+}
