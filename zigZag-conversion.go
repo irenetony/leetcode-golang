@@ -67,9 +67,9 @@ func TestConvert(s string, numRows int) {
 	res := convert(s, numRows)
 	if s == "PAYPALISHIRING" {
 		if res != "PAHNAPLSIIGYIR" {
-			fmt.Printf("Wrong!")
+			fmt.Println("Wrong!")
 		} else {
-			fmt.Printf("Correct!")
+			fmt.Println("Correct!")
 		}
 	}
 }
