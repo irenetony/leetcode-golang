@@ -26,6 +26,10 @@ func isValidIPV4(IP string) bool {
 }
 
 func isValidSingleIPV4(IP string) bool {
+	if len(IP) == 0 || IP[0] == '-' {
+		return false
+	}
+
 	// check that IP whether has leading zero or not
 	if len(IP) >= 2 && IP[0] == '0' {
 		return false
@@ -56,11 +60,15 @@ func isValidIPV6(IP string) bool {
 }
 
 func isValidSingleIPV6(IP string) bool {
+	if len(IP) == 0 || IP[0] == '-' {
+		return false
+	}
+
 	if len(IP) > 4 {
 		return false
 	}
 	for _, val := range IP {
-		if !((val >= '0' && val <= '9') || (val >= 'a' && val <= 'z') || (val >= 'A' && val <= 'Z')) {
+		if !((val >= '0' && val <= '9') || (val >= 'a' && val <= 'f') || (val >= 'A' && val <= 'F')) {
 			return false
 		}
 	}
@@ -95,6 +103,8 @@ func TestValidIPAddress(IP string) {
 }
 
 func main() {
+	TestValidIPAddress("1.0.1.")
+	fmt.Println()
 	TestValidIPAddress("172.16.254.1")
 	fmt.Println()
 	TestValidIPAddress("2001:0db8:85a3:0:0:8A2E:0370:7334")
