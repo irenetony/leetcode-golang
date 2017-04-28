@@ -46,7 +46,7 @@ func heapify(array []int, i, limit int) {
 }
 
 func main() {
-	array := []int{1, 2, 3, 4, 5, 6, 7}
+	array := []int{5,4,1,8,9,2,10}
 	heapSort(array)
 	fmt.Printf("%s", strings.Join(util.IntArray2StringArray(array), ","))
 }
