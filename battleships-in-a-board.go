@@ -11,18 +11,18 @@ func countBattleships(board [][]byte) int {
 	for i := 0; i < len(board); i++ {
 		for j := 0; j < len(board[i]); j++ {
 			if inCountingState {
-				if board[i][j] =='.'{
+				if board[i][j] == '.' {
 					inCountingState = false
-				}else{
-					if j-1>=0&&board[i][j-1]=='x'{
+				} else {
+					if j-1 >= 0 && board[i][j-1] == 'x' {
 						continue
 					}
 				}
-			}else{
-				if board[i][j]=='x'{
-					if i-1>=0&&board[i-1][j]=='x'{
+			} else {
+				if board[i][j] == 'x' {
+					if i-1 >= 0 && board[i-1][j] == 'x' {
 						continue
-					}else{
+					} else {
 						res++
 						inCountingState = true
 					}
@@ -57,8 +57,8 @@ func main() {
 
 	board2 := [][]byte{
 		{'x', '.', '.', 'x'},
-		{'.', '.', '.', 'x'},
-		{'.', '.', '.', 'x'},
+		{'x', '.', '.', '.'},
+		{'x', '.', '.', 'x'},
 	}
 	testCountBattleships(board2)
 }
