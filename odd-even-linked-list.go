@@ -1,23 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	ds "leetcode/datastructure"
+)
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-func OddEvenList(head *ListNode) *ListNode {
+func OddEvenList(head *ds.ListNode) *ds.ListNode {
 	if head == nil {
 		return nil
 	}
 
-	var oddPtr *ListNode = head
-	var evenPtr *ListNode = oddPtr.Next
+	var oddPtr *ds.ListNode = head
+	var evenPtr *ds.ListNode = oddPtr.Next
 
-	var firstEvenPtr *ListNode = evenPtr
+	var firstEvenPtr *ds.ListNode = evenPtr
 
-	var nextOddPtr, nextEvenPtr, lastOddPtr *ListNode
+	var nextOddPtr, nextEvenPtr, lastOddPtr *ds.ListNode
 
 	lastOddPtr = oddPtr
 	for oddPtr != nil || evenPtr != nil {
@@ -44,7 +42,7 @@ func OddEvenList(head *ListNode) *ListNode {
 }
 
 func TestOddEvenList0() {
-	var l1 *ListNode = nil
+	var l1 *ds.ListNode = nil
 	res := OddEvenList(l1)
 	for res != nil {
 		fmt.Printf("%d->", res.Val)
@@ -54,7 +52,7 @@ func TestOddEvenList0() {
 }
 
 func TestOddEvenList1() {
-	l1 := &ListNode{
+	l1 := &ds.ListNode{
 		Val: 1,
 	}
 	res := OddEvenList(l1)
@@ -66,10 +64,10 @@ func TestOddEvenList1() {
 }
 
 func TestOddEvenList2() {
-	l1 := &ListNode{
+	l1 := &ds.ListNode{
 		Val: 1,
 	}
-	l2 := &ListNode{
+	l2 := &ds.ListNode{
 		Val: 2,
 	}
 	l1.Next = l2
@@ -83,13 +81,13 @@ func TestOddEvenList2() {
 }
 
 func TestOddEvenList3() {
-	l1 := &ListNode{
+	l1 := &ds.ListNode{
 		Val: 1,
 	}
-	l2 := &ListNode{
+	l2 := &ds.ListNode{
 		Val: 2,
 	}
-	l3 := &ListNode{
+	l3 := &ds.ListNode{
 		Val: 3,
 	}
 	l1.Next = l2
@@ -104,16 +102,16 @@ func TestOddEvenList3() {
 }
 
 func TestOddEvenList4() {
-	l1 := &ListNode{
+	l1 := &ds.ListNode{
 		Val: 1,
 	}
-	l2 := &ListNode{
+	l2 := &ds.ListNode{
 		Val: 2,
 	}
-	l3 := &ListNode{
+	l3 := &ds.ListNode{
 		Val: 3,
 	}
-	l4 := &ListNode{
+	l4 := &ds.ListNode{
 		Val: 4,
 	}
 	l1.Next = l2
@@ -129,19 +127,19 @@ func TestOddEvenList4() {
 }
 
 func TestOddEvenList5() {
-	l1 := &ListNode{
+	l1 := &ds.ListNode{
 		Val: 1,
 	}
-	l2 := &ListNode{
+	l2 := &ds.ListNode{
 		Val: 2,
 	}
-	l3 := &ListNode{
+	l3 := &ds.ListNode{
 		Val: 3,
 	}
-	l4 := &ListNode{
+	l4 := &ds.ListNode{
 		Val: 4,
 	}
-	l5 := &ListNode{
+	l5 := &ds.ListNode{
 		Val: 5,
 	}
 	l1.Next = l2
@@ -158,22 +156,22 @@ func TestOddEvenList5() {
 }
 
 func TestOddEvenList6() {
-	l1 := &ListNode{
+	l1 := &ds.ListNode{
 		Val: 1,
 	}
-	l2 := &ListNode{
+	l2 := &ds.ListNode{
 		Val: 2,
 	}
-	l3 := &ListNode{
+	l3 := &ds.ListNode{
 		Val: 3,
 	}
-	l4 := &ListNode{
+	l4 := &ds.ListNode{
 		Val: 4,
 	}
-	l5 := &ListNode{
+	l5 := &ds.ListNode{
 		Val: 5,
 	}
-	l6 := &ListNode{
+	l6 := &ds.ListNode{
 		Val: 6,
 	}
 	l1.Next = l2
@@ -191,7 +189,7 @@ func TestOddEvenList6() {
 }
 
 func main() {
-	TestOddEvenList0()
+	//TestOddEvenList0()
 	//TestOddEvenList1()
 	//TestOddEvenList2()
 	//TestOddEvenList3()
