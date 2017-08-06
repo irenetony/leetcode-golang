@@ -9,7 +9,10 @@ import (
 )
 
 func mergeKLists(lists []*ds.ListNode) *ds.ListNode {
-	// FIXME
+	if lists == nil || len(lists) == 0 {
+		return nil
+	}
+
 	eachListCurNodes := make([]*ds.ListNode, 0)
 	for i := 0; i < len(lists); i++ {
 		eachListCurNodes = append(eachListCurNodes, lists[i])
@@ -39,7 +42,13 @@ func mergeKLists(lists []*ds.ListNode) *ds.ListNode {
 		eachListCurNodes[minIdx] = nextNode
 	}
 
-	resListTailNode.Next = eachListCurNodes[notNullListIdx]
+	if resListTailNode != nil {
+		resListTailNode.Next = eachListCurNodes[notNullListIdx]
+	} else {
+		if notNullListIdx != -1 {
+			return lists[notNullListIdx]
+		}
+	}
 
 	return resListHeadNode
 }
@@ -106,8 +115,10 @@ func main() {
 	node12.Next = node13
 
 	lists := make([]*ds.ListNode, 0)
-	lists = append(lists, node1)
-	lists = append(lists, node4)
-	lists = append(lists, node7)
+	//lists = append(lists, node1)
+	//lists = append(lists, node4)
+	//lists = append(lists, node7)
+	lists = append(lists, nil)
+	lists = append(lists, &ds.ListNode{Val: 1})
 	TestMergeKLists(lists)
 }
