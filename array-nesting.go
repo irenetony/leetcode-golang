@@ -3,12 +3,31 @@ package main
 import (
 	"fmt"
 	"strings"
-	"leetcode/util"
+	"github.com/berryjam/leetcode/util"
 )
 
 func arrayNesting(nums []int) int {
-	// FIXME
-	return 6
+	result := 0
+	flags := make(map[int]bool)
+
+	for idx := range nums {
+		curIdx := idx
+		curResult := 0
+		for {
+			if _, ok := flags[curIdx]; !ok {
+				flags[curIdx] = true
+				curResult++
+				curIdx = nums[curIdx]
+			} else {
+				break
+			}
+		}
+		if result < curResult {
+			result = curResult
+		}
+	}
+
+	return result
 }
 
 func TestArrayNesting(nums []int) {
