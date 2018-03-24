@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
-	"leetcode/util"
+	"github.com/berryjam/leetcode/util"
 )
 
 func jump(nums []int) int {

@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	ds "leetcode/datastructure"
-	"leetcode/util"
+	ds "github.com/berryjam/leetcode/datastructure"
+	"github.com/berryjam/leetcode/util"
 	"strings"
 )
 

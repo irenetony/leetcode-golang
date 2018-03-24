@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	ds "leetcode/datastructure"
+	ds "github.com/berryjam/leetcode/datastructure"
 )
 
 func IsValidBST(node *ds.TreeNode) bool {

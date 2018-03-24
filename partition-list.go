@@ -1,7 +1,7 @@
 package main
 
 import (
-	ds "leetcode/datastructure"
+	ds "github.com/berryjam/leetcode/datastructure"
 	"fmt"
 )
 

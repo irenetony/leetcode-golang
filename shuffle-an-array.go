@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"leetcode/util"
+	"github.com/berryjam/leetcode/util"
 	"strings"
 	"math/rand"
 	"time"

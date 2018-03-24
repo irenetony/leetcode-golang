@@ -1,7 +1,7 @@
 package main
 
 import (
-	"leetcode/util"
+	"github.com/berryjam/leetcode/util"
 	"fmt"
 	"strings"
 )

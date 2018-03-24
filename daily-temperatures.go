@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"leetcode/datastructure"
+	"github.com/berryjam/leetcode/datastructure"
 )
 
 func dailyTemperatures(temperatures []int) []int {
