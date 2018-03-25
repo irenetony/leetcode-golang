@@ -1,30 +1,57 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func longestPalindrome(s string) string {
-	array := []rune(s)
-	res := ""
-	maxLength := 0
-	for i := 0; i < len(array); i++ {
-		for j := i; j < len(array); j++ {
-			if isPalindromeStr(string(array[i:j+1])) && maxLength < (j-i+1) {
-				maxLength = j - i + 1
-				res = string(array[i:j+1])
-			}
+	sArray := []rune(s)
+	newArray := make([]rune, 2*len(sArray)+1)
+	for i := 0; i < 2*len(sArray)+1; i++ {
+		if i%2 == 0 {
+			newArray[i] = 0x00
+		} else {
+			newArray[i] = sArray[i/2]
 		}
 	}
-	return res
-}
 
-func isPalindromeStr(s string) bool {
-	array := []rune(s)
-	for i := 0; i < len(array)/2; i++ {
-		if array[i] != array[len(array)-1-i] {
-			return false
+	RL := make([]int, len(newArray))
+	for i := 0; i < len(RL); i++ {
+		RL[i] = 0
+	}
+	maxRight := 0
+	pos := 0
+	maxLen := 0
+	index := 0
+	for i := 0; i < len(newArray)-1; i++ {
+		if i < maxRight {
+			if RL[2*pos-i] < maxRight-i {
+				RL[i] = RL[2*pos-i]
+			} else {
+				RL[i] = maxRight - i
+			}
+		} else {
+			RL[i] = 1
+		}
+
+		for i-RL[i] >= 0 && i+RL[i] < len(newArray) && newArray[i+RL[i]] == newArray[i-RL[i]] {
+			RL[i]++
+		}
+
+		if i+RL[i] > maxRight {
+			maxRight = i + RL[i]
+			pos = i
 		}
 	}
-	return true
+
+	for i := 1; i < len(newArray)-1; i++ {
+		if RL[i] > maxLen {
+			maxLen = RL[i]
+			index = i
+		}
+	}
+
+	return string(sArray[(index-maxLen)/2:(index-maxLen)/2+maxLen-1])
 }
 
 func TestLongestPalindrome(s string) {
