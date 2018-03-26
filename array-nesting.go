@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
-	"github.com/berryjam/leetcode/util"
+	"github.com/berryjam/leetcode-golang/util"
 )
 
 func arrayNesting(nums []int) int {

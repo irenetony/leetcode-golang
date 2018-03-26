@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/berryjam/leetcode/util"
-	ds "github.com/berryjam/leetcode/datastructure"
+	"github.com/berryjam/leetcode-golang/util"
+	ds "github.com/berryjam/leetcode-golang/datastructure"
 )
 
 func findCircleNum(M [][]int) int {

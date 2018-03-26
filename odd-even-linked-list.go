@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	ds "github.com/berryjam/leetcode/datastructure"
+	ds "github.com/berryjam/leetcode-golang/datastructure"
 )
 
 func OddEvenList(head *ds.ListNode) *ds.ListNode {

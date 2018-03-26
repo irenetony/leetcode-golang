@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/berryjam/leetcode/util"
+	"github.com/berryjam/leetcode-golang/util"
 	"fmt"
 	"strings"
 )

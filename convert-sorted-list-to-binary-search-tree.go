@@ -1,7 +1,7 @@
 package main
 
 import (
-	ds "github.com/berryjam/leetcode/datastructure"
+	ds "github.com/berryjam/leetcode-golang/datastructure"
 	"fmt"
 )
 

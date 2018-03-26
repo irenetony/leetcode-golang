@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	ds "github.com/berryjam/leetcode/datastructure"
-	"github.com/berryjam/leetcode/util"
+	ds "github.com/berryjam/leetcode-golang/datastructure"
+	"github.com/berryjam/leetcode-golang/util"
 	"strings"
 )
 

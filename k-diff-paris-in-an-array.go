@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/berryjam/leetcode/util"
+	"github.com/berryjam/leetcode-golang/util"
 	"strings"
 	"sort"
 )

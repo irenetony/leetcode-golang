@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 	"strings"
-	"github.com/berryjam/leetcode/util"
-	ds "github.com/berryjam/leetcode/datastructure"
+	"github.com/berryjam/leetcode-golang/util"
+	ds "github.com/berryjam/leetcode-golang/datastructure"
 )
 
 func deleteDuplicated(head *ds.ListNode) *ds.ListNode {
