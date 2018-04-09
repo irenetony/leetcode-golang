@@ -9,8 +9,29 @@ import (
 func reconstructQueue(people [][]int) [][]int {
 	// FIXME
 	quickSortEntry(people)
-	fmt.Printf("%+v\n", people)
-	return [][]int{{5, 0}, {7, 0}, {5, 2}, {6, 1}, {4, 4}, {7, 1}}
+	//fmt.Printf("%+v\n", people)
+	res := make([][]int, len(people))
+	for i := range res {
+		res[i] = make([]int, 2)
+		res[i][0] = -1
+	}
+	for _, p := range people {
+		count := p[1]
+		for i, r := range res {
+			if r[0] < p[0] && r[0] != -1 {
+				continue
+			} else {
+				if count == 0 {
+					res[i] = p
+					break
+				} else {
+					count--
+				}
+			}
+		}
+	}
+	//return [][]int{{5, 0}, {7, 0}, {5, 2}, {6, 1}, {4, 4}, {7, 1}}
+	return res
 }
 
 func quickSortEntry(array [][]int) {
