@@ -57,7 +57,6 @@ func quickSortDoubleArray(array [][]int, l, r int) {
 	}
 
 	array[pid] = p
-
 	quickSortDoubleArray(array, l, pid-1)
 	quickSortDoubleArray(array, pid+1, r)
 }
