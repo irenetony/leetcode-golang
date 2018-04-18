@@ -6,6 +6,11 @@ import (
 	"strings"
 )
 
+type NumCountPair struct {
+	Num   int
+	Count int
+}
+
 func topKFrequent(nums []int, k int) []int {
 	hashMap := make(map[int]int)
 	for _, v := range nums {
@@ -16,51 +21,48 @@ func topKFrequent(nums []int, k int) []int {
 		}
 	}
 
-	countIntsMap := make(map[int][]int)
-	for key, val := range hashMap {
-		if _, ok := countIntsMap[val]; ok {
-			countIntsMap[val] = append(countIntsMap[val], key)
-		} else {
-			countIntsMap[val] = []int{key}
-		}
+	pairs := make([]NumCountPair, 0)
+	//countIntsMap := make(map[int][]int)
+	for num, count := range hashMap {
+		pairs = append(pairs, NumCountPair{Num: num, Count: count})
 	}
-	fmt.Printf("%+v\n", countIntsMap)
-	minHeap := make([]int, 0)
-	for key := range countIntsMap {
+	fmt.Printf("%+v\n", pairs)
+	minHeap := make([]NumCountPair, 0)
+	for _, pair := range pairs {
 		if len(minHeap) < k {
-			minHeap = append(minHeap, key)
+			minHeap = append(minHeap, pair)
 			if len(minHeap) == k {
 				for idx := k/2 - 1; idx >= 0; idx-- {
 					heapifyHeap(minHeap, idx)
 				}
 			}
 		} else {
-			if key > minHeap[0] {
-				minHeap[0] = key
+			if pair.Count > minHeap[0].Count {
+				minHeap[0] = pair
 				heapifyHeap(minHeap, 0)
 			}
 		}
 	}
 	res := make([]int, 0)
-	for _, count := range minHeap {
-		res = append(res, countIntsMap[count]...)
+	for _, pair := range minHeap {
+		res = append(res, pair.Num)
 	}
 	return res
 }
 
-func heapifyHeap(minHeap []int, idx int) {
+func heapifyHeap(minHeap []NumCountPair, idx int) {
 	curIdx := idx
 	for curIdx <= len(minHeap)/2-1 {
 		if 2*curIdx+2 <= len(minHeap)-1 { // has right child
-			if minHeap[2*curIdx+1] < minHeap[2*curIdx+2] { // left is smaller
-				if minHeap[curIdx] > minHeap[2*curIdx+1] {
+			if minHeap[2*curIdx+1].Count < minHeap[2*curIdx+2].Count { // left is smaller
+				if minHeap[curIdx].Count > minHeap[2*curIdx+1].Count {
 					minHeap[2*curIdx+1], minHeap[curIdx] = minHeap[curIdx], minHeap[2*curIdx+1]
 					curIdx = 2*curIdx + 1
 				} else {
 					break
 				}
 			} else { // right is smaller
-				if minHeap[curIdx] > minHeap[2*curIdx+2] {
+				if minHeap[curIdx].Count > minHeap[2*curIdx+2].Count {
 					minHeap[2*curIdx+2], minHeap[curIdx] = minHeap[curIdx], minHeap[2*curIdx+2]
 					curIdx = 2*curIdx + 2
 				} else {
@@ -68,7 +70,7 @@ func heapifyHeap(minHeap []int, idx int) {
 				}
 			}
 		} else { // has only left child
-			if minHeap[2*curIdx+1] < minHeap[curIdx] { // left child is smaller
+			if minHeap[2*curIdx+1].Count < minHeap[curIdx].Count { // left child is smaller
 				minHeap[2*curIdx+1], minHeap[curIdx] = minHeap[curIdx], minHeap[2*curIdx+1]
 				curIdx = 2*curIdx + 1
 			} else {
