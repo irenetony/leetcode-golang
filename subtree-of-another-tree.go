@@ -101,7 +101,7 @@ func TestIsSubtree2() {
 	t4.Left = t1
 	t4.Right = t2
 
-	fmt.Printf("%+v", isSubtree(s3, t4))
+	fmt.Printf("%+v\n", isSubtree(s3, t4))
 }
 
 func main() {
