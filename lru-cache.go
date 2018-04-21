@@ -22,10 +22,29 @@ func Constructor1(capacity int) LRUCache {
 
 func (this *LRUCache) Get(key int) int {
 	if node, ok := this.Cache[key]; ok {
-		// TODO
+		pre := node.Pre
+		next := node.Next
+		if pre != nil {
+			pre.Next = next
+		}
+		if next != nil {
+			if node != this.Head {
+				next.Pre = pre
+			}
+		}
+		if node == this.Tail {
+			if pre != nil {
+				this.Tail = pre
+			} else {
+				this.Tail = node
+			}
+		}
+		this.Head.Pre = node
+		node.Next = this.Head
+		node.Pre = nil
+		this.Head = node
 		return node.Val
 	} else {
-		// TODO
 		return -1
 	}
 }
@@ -34,18 +53,7 @@ func (this *LRUCache) Put(key int, value int) {
 	if node, ok := this.Cache[key]; ok {
 		node.Key = key
 		node.Val = value
-		pre := node.Pre
-		next := node.Next
-		if pre != nil {
-			pre.Next = next
-		}
-		if next != nil {
-			next.Pre = pre
-		}
-		this.Head.Pre = node
-		node.Next = this.Head
-		node.Pre = nil
-		this.Head = node
+		this.Get(key)
 	} else {
 		node = &DoubleLinkedlistNode{Key: key, Val: value}
 		if len(this.Cache) < this.Cap {
@@ -60,17 +68,15 @@ func (this *LRUCache) Put(key int, value int) {
 				this.Tail = node
 			}
 		} else {
+			this.Head.Pre = node
+			node.Next = this.Head
 			lruKey := this.Tail.Key
 			pre := this.Tail.Pre
 			if pre != nil {
 				pre.Next = nil
 				this.Tail = pre
 			}
-			if this.Head != this.Tail{
-				this.Head.Pre = node
-			}
-			node.Next = this.Head
-			node.Pre = nil
+
 			this.Head = node
 			delete(this.Cache, lruKey)
 		}
@@ -86,14 +92,31 @@ func (this *LRUCache) Put(key int, value int) {
  */
 
 func main() {
-	cache := Constructor1(1)
-	cache.Put(1, 1)
-	cache.Put(2, 2)
-	fmt.Printf("get(1)=%d\n", cache.Get(1))
-	cache.Put(3, 3)
+	//cache := Constructor1(2)
+	//cache.Put(1, 1)
+	//cache.Put(2, 2)
+	//fmt.Printf("get(1)=%d\n", cache.Get(1))
+	//cache.Put(3, 3)
+	//fmt.Printf("get(2)=%d\n", cache.Get(2))
+	//cache.Put(4, 4)
+	//fmt.Printf("get(1)=%d\n", cache.Get(1))
+	//fmt.Printf("get(3)=%d\n", cache.Get(3))
+	//fmt.Printf("get(4)=%d\n", cache.Get(4))
+
+	//cache := Constructor1(1)
+	//cache.Put(2, 1)
+	//fmt.Printf("get(2)=%d\n", cache.Get(2))
+	//cache.Put(3, 2)
+	//fmt.Printf("get(2)=%d\n", cache.Get(2))
+	//fmt.Printf("get(3)=%d\n", cache.Get(3))
+
+	cache := Constructor1(2)
+	cache.Put(2, 1)
+	cache.Put(3, 2)
+	fmt.Printf("get(3)=%d\n", cache.Get(3))
 	fmt.Printf("get(2)=%d\n", cache.Get(2))
-	cache.Put(4, 4)
-	fmt.Printf("get(1)=%d\n", cache.Get(1))
+	cache.Put(4, 3)
+	fmt.Printf("get(1)=%d\n", cache.Get(2))
 	fmt.Printf("get(3)=%d\n", cache.Get(3))
 	fmt.Printf("get(4)=%d\n", cache.Get(4))
 }
