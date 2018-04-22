@@ -5,53 +5,32 @@ import (
 )
 
 func longestPalindrome(s string) string {
-	sArray := []rune(s)
-	newArray := make([]rune, 2*len(sArray)+1)
-	for i := 0; i < 2*len(sArray)+1; i++ {
-		if i%2 == 0 {
-			newArray[i] = 0x00
-		} else {
-			newArray[i] = sArray[i/2]
+	res := ""
+	sArr := []rune(s)
+	for i := 0; i < len(sArr); i++ {
+		if tmp := longestPalindromeHelper(s, i); len(tmp) > len(res) {
+			res = tmp
 		}
 	}
 
-	RL := make([]int, len(newArray))
-	for i := 0; i < len(RL); i++ {
-		RL[i] = 0
+	return res
+}
+
+func longestPalindromeHelper(s string, mid int) string {
+	l := mid - 1
+	r := mid + 1
+	sArr := []rune(s)
+	for r < len(sArr) && sArr[r] == sArr[mid] {
+		r++
 	}
-	maxRight := 0
-	pos := 0
-	maxLen := 0
-	index := 0
-	for i := 0; i < len(newArray)-1; i++ {
-		if i < maxRight {
-			if RL[2*pos-i] < maxRight-i {
-				RL[i] = RL[2*pos-i]
-			} else {
-				RL[i] = maxRight - i
-			}
-		} else {
-			RL[i] = 1
-		}
-
-		for i-RL[i] >= 0 && i+RL[i] < len(newArray) && newArray[i+RL[i]] == newArray[i-RL[i]] {
-			RL[i]++
-		}
-
-		if i+RL[i] > maxRight {
-			maxRight = i + RL[i]
-			pos = i
-		}
+	for l >= 0 && sArr[l] == sArr[mid] {
+		l--
 	}
-
-	for i := 1; i < len(newArray)-1; i++ {
-		if RL[i] > maxLen {
-			maxLen = RL[i]
-			index = i
-		}
+	for r < len(sArr) && l >= 0 && sArr[l] == sArr[r] {
+		r++
+		l--
 	}
-
-	return string(sArray[(index-maxLen)/2:(index-maxLen)/2+maxLen-1])
+	return string(sArr[l+1:r])
 }
 
 func TestLongestPalindrome(s string) {
@@ -64,4 +43,5 @@ func TestLongestPalindrome(s string) {
 func main() {
 	TestLongestPalindrome("babad")
 	TestLongestPalindrome("我是中是我的")
+	TestLongestPalindrome("cbbd")
 }
