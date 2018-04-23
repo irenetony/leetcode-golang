@@ -1,22 +1,46 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	ds "github.com/berryjam/leetcode-golang/datastructure"
+)
 
 func largestRectangleArea(heights []int) int {
-	res := 0
-	for i := 0; i < len(heights); i++ {
-		minHeight := heights[i]
-		for j := i; j < len(heights); j++ {
-			if minHeight > heights[j] {
-				minHeight = heights[j]
+	stack := ds.NewStack()
+	maxArea := 0
+	for i := 0; i <= len(heights); i++ {
+		var h int
+		if i == len(heights) {
+			h = 0
+		} else {
+			h = heights[i]
+		}
+
+		if stack.IsEmpty() {
+			stack.Push(i)
+		} else if peekHeight := heights[stack.Top().(int)]; h >= peekHeight {
+			stack.Push(i)
+		} else {
+			t := stack.Pop().(int)
+			var width int
+			if stack.IsEmpty() {
+				width = i
+			} else {
+				width = i - 1 - stack.Top().(int)
 			}
-			if res < (j-i+1)*minHeight {
-				res = (j - i + 1) * minHeight
-			}
+			maxArea = maxVal(maxArea, heights[t]*width)
+			i--
 		}
 	}
 
-	return res
+	return maxArea
+}
+
+func maxVal(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }
 
 func main() {
