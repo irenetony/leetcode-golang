@@ -8,12 +8,16 @@ const (
 )
 
 type TasksStatus struct {
-	Ptr          int
-	Status       int
-	CoolingCount int
+	Ptr            int
+	Status         int
+	CoolingCount   int
+	RemainingCount int
 }
 
 func leastInterval(tasks []byte, n int) int {
+	if n == 0 {
+		return len(tasks)
+	}
 	res := 0
 	heapSortByte(tasks)
 
@@ -24,36 +28,53 @@ func leastInterval(tasks []byte, n int) int {
 	for i := 0; i < len(tasks); i++ {
 		if tasks[i] != lastTasks {
 			lastTasks = tasks[i]
-			tasksStatusMap[tasks[i]] = &TasksStatus{Ptr: i, Status: Ready}
+			tasksStatusMap[tasks[i]] = &TasksStatus{Ptr: i, Status: Ready, RemainingCount: 1}
+			readyTasksMap[tasks[i]] = true
+		} else {
+			tasksStatusMap[tasks[i]].RemainingCount++
 		}
 	}
 
 	for len(tasksStatusMap) > 0 {
 		res++
-		if len(readyTasksMap) > 0 { // run one of ready tasks
-
+		if len(readyTasksMap) > 0 { // run one of longest ready tasks
+			maxRemainTask := 0
+			var task byte
+			for t := range readyTasksMap {
+				if tasksStatusMap[t].RemainingCount > maxRemainTask {
+					maxRemainTask = tasksStatusMap[t].RemainingCount
+					task = t
+				}
+			}
+			status := tasksStatusMap[task]
+			status.Status = Cooling
+			status.CoolingCount = n
+			status.Ptr++
+			status.RemainingCount--
+			delete(readyTasksMap, task)
+			coolingTasksMap[task] = true
+			if status.Ptr == len(tasks) || tasks[status.Ptr] != task { // task done
+				delete(coolingTasksMap, task)
+				delete(tasksStatusMap, task)
+			}
+			for coolingTask := range coolingTasksMap {
+				if coolingTask != task {
+					tasksStatusMap[coolingTask].CoolingCount--
+					if tasksStatusMap[coolingTask].CoolingCount == 0 {
+						tasksStatusMap[coolingTask].Status = Ready
+						readyTasksMap[coolingTask] = true
+						delete(coolingTasksMap, coolingTask)
+					}
+				}
+			}
 		} else { // idle
 			for coolingTask := range coolingTasksMap {
 				tasksStatusMap[coolingTask].CoolingCount--
 				if tasksStatusMap[coolingTask].CoolingCount == 0 {
 					tasksStatusMap[coolingTask].Status = Ready
+					readyTasksMap[coolingTask] = true
 					delete(coolingTasksMap, coolingTask)
 				}
-			}
-		}
-		for task, status := range tasksStatusMap {
-			if status.Status == Ready {
-				status.Ptr++
-				if status.Ptr == len(tasks) || tasks[status.Ptr] != task { // task done
-					delete(tasksStatusMap, task)
-					continue
-				}
-				status.Status = Cooling
-				status.CoolingCount = n
-				coolingTasksMap[task] = true
-
-			} else {
-
 			}
 		}
 	}
@@ -106,5 +127,5 @@ func main() {
 	//arr := []byte{'D', 'A', 'B', 'C'}
 	heapSortByte(arr)
 	fmt.Printf("%+v\n", arr)
-	fmt.Printf("res=%+v", leastInterval([]byte{'D', 'B', 'A', 'A', 'A', 'C', 'B', 'C', 'B'}, 2))
+	fmt.Printf("res=%+v", leastInterval([]byte{'A', 'B', 'C', 'A', 'B'}, 2))
 }
