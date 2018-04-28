@@ -2,40 +2,49 @@ package main
 
 import (
 	ds "github.com/berryjam/leetcode-golang/datastructure"
-	"strconv"
 	"fmt"
+	"strconv"
 	"strings"
 )
 
-var index = -1
+var dArr []string
+var idx = -1
 
 func serialize(root *ds.TreeNode) string {
 	res := ""
 	if root == nil {
-		res += "#,"
-		return res
+		return "#,"
 	}
+
 	res += strconv.Itoa(root.Val) + ","
 	res += serialize(root.Left)
 	res += serialize(root.Right)
+
 	return res
 }
 
 func deserialize(data string) *ds.TreeNode {
-	var res *ds.TreeNode
-	index++
-	arr := strings.Split(data, ",")
-	if arr[index] != "#" {
-		v, err := strconv.Atoi(arr[index])
-		if err != nil {
-			panic(err)
-		}
-		res = &ds.TreeNode{Val: v}
-		res.Left = deserialize(data)
-		res.Right = deserialize(data)
+	if len(dArr) == 0 {
+		dArr = strings.Split(data, ",")
 	}
 
-	return res
+	idx++
+	if dArr[idx] == "#" {
+		return nil
+	}
+
+	val, err := strconv.Atoi(dArr[idx])
+	if err != nil {
+		panic(err)
+	}
+	node := &ds.TreeNode{Val: val}
+	left := deserialize(data)
+	right := deserialize(data)
+
+	node.Left = left
+	node.Right = right
+
+	return node
 }
 
 func main() {
