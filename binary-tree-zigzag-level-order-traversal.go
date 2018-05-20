@@ -8,55 +8,54 @@ import (
 )
 
 func ZigzagLevelOrder(root *ds.TreeNode) (res [][]int) {
-	res = [][]int{}
 	if root == nil {
 		return
 	}
 
 	stack := ds.NewStack()
-	queue := ds.NewQueue()
-	queue.Enqueue(root)
-	idx := 0
-	for !queue.IsEmpty() || !stack.IsEmpty() {
+	queue1 := ds.NewQueue()
+	queue2 := ds.NewQueue()
+	queue1.Enqueue(root)
 
-		currArray := []int{}
-		for !queue.IsEmpty() {
-			curNode, err := queue.Dequeue()
-			if err != nil {
-				panic(err)
-			}
-			currArray = append(currArray, curNode.(*ds.TreeNode).Val)
-
-			if idx%2 == 0 { // 自左向右把子节点放到stack
-				leftNode := curNode.(*ds.TreeNode).Left
-				if leftNode != nil {
-					stack.Push(leftNode)
+	for !queue1.IsEmpty() || !queue2.IsEmpty() {
+		if !queue1.IsEmpty() {
+			cur := make([]int, 0)
+			for !queue1.IsEmpty() {
+				val, _ := queue1.Dequeue()
+				node := val.(*ds.TreeNode)
+				cur = append(cur, node.Val)
+				if node.Left != nil {
+					queue2.Enqueue(node.Left)
+					stack.Push(node.Left)
 				}
-				rightNode := curNode.(*ds.TreeNode).Right
-				if rightNode != nil {
-					stack.Push(rightNode)
-				}
-			} else { // 自右向左把自节点放到stack
-				rightNode := curNode.(*ds.TreeNode).Right
-				if rightNode != nil {
-					stack.Push(rightNode)
-				}
-				leftNode := curNode.(*ds.TreeNode).Left
-				if leftNode != nil {
-					stack.Push(leftNode)
+				if node.Right != nil {
+					queue2.Enqueue(node.Right)
+					stack.Push(node.Right)
 				}
 			}
-		}
-		if len(currArray) > 0 {
-			res = append(res, currArray)
+			res = append(res, cur)
 		}
 
-		for !stack.IsEmpty() {
-			curNode := stack.Pop()
-			queue.Enqueue(curNode)
+		if !stack.IsEmpty() {
+			cur := make([]int, 0)
+			for !stack.IsEmpty() {
+				val := stack.Pop()
+				node := val.(*ds.TreeNode)
+				cur = append(cur, node.Val)
+			}
+			res = append(res, cur)
 		}
 
-		idx++
+		for !queue2.IsEmpty() {
+			val, _ := queue2.Dequeue()
+			node := val.(*ds.TreeNode)
+			if node.Left != nil {
+				queue1.Enqueue(node.Left)
+			}
+			if node.Right != nil {
+				queue1.Enqueue(node.Right)
+			}
+		}
 	}
 
 	return
