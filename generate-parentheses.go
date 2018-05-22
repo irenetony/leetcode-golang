@@ -1,25 +1,45 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	ds "github.com/berryjam/leetcode-golang/datastructure"
+)
 
 func generateParenthesis(n int) []string {
+	if n == 0 {
+		return []string{""}
+	}
+
 	res := make([]string, 0)
 
-	if n == 0 {
-		res = append(res, "")
-	} else if n == 1 {
-		res = append(res, "()")
-	} else {
-		nextParenthesis := generateParenthesis(n - 1)
-		for _, parenthesis := range nextParenthesis {
-			res = append(res, "("+parenthesis+")")
-		}
-		for _, parenthesis := range nextParenthesis {
-			if isSingleParenthesis := isAllSingleParenthesis(parenthesis); isSingleParenthesis {
-				res = append(res, "()"+parenthesis)
+	stack := ds.NewStack()
+	cur := ""
+	stack.Push(-1)
+	for !stack.IsEmpty() {
+		if isValid(cur, "(", n) {
+			cur += "("
+			stack.Push(len(cur) - 1)
+		} else {
+			if isValid(cur, ")", n) {
+				cur += ")"
+				if len(cur) == 2*n {
+					if isValid(cur, "", n) {
+						res = append(res, cur)
+					} else {
+						break
+					}
+					val := stack.Pop()
+					if val.(int) == -1 {
+						break
+					}
+					cur = cur[0:val.(int)] + ")"
+				}
 			} else {
-				res = append(res, parenthesis+"()")
-				res = append(res, "()"+parenthesis)
+				val := stack.Pop()
+				if val.(int) == -1 {
+					break
+				}
+				cur = cur[0:val.(int)] + ")"
 			}
 		}
 	}
@@ -27,20 +47,31 @@ func generateParenthesis(n int) []string {
 	return res
 }
 
-func isAllSingleParenthesis(parenthesis string) bool {
-	for idx, runeValues := range parenthesis {
-		if idx%2 == 0 {
-			if runeValues != '(' {
-				return false
-			}
+func isValid(cur, p string, n int) bool {
+	leftCount := 0
+	rightCount := 0
+	for _, r := range cur {
+		if string(r) == "(" {
+			leftCount++
+		} else if string(r) == ")" {
+			rightCount++
 		}
-		if idx%2 == 1 {
-			if runeValues != ')' {
-				return false
-			}
+		if rightCount > leftCount {
+			return false
 		}
 	}
-	return true
+
+	if p == "(" {
+		leftCount++
+	} else if p == ")" {
+		rightCount++
+	}
+
+	if leftCount >= rightCount && leftCount <= n {
+		return true
+	}
+
+	return false
 }
 
 func TestGenerateParenthesis(n int) {
