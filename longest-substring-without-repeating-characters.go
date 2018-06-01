@@ -5,26 +5,34 @@ import "fmt"
 func lengthOfLongestSubstring(s string) int {
 	res := 0
 
-	runeMap := make(map[rune]bool)
+	runeMap := make(map[rune]int)
 
 	runeArr := []rune(s)
 
+	cur := 0
+
 	for i := 0; i < len(runeArr); i++ {
-		cur := 0
-		for j := i; j < len(runeArr); j++ {
-			if _, ok := runeMap[runeArr[j]]; !ok {
-				cur++
-				runeMap[runeArr[j]] = true
-				if cur > res {
-					res = cur
-				}
-			} else {
-				if cur > res {
-					res = cur
-				}
-				runeMap = make(map[rune]bool)
-				break
+
+		if rIdx, ok := runeMap[runeArr[i]]; !ok {
+			runeMap[runeArr[i]] = i
+			cur++
+			if len(runeMap) > res {
+				res = len(runeMap)
 			}
+		} else {
+			for k, v := range runeMap {
+				if v <= rIdx {
+					delete(runeMap, k)
+				}
+			}
+			runeMap[runeArr[i]] = i
+			if cur > res {
+				res = cur
+			}
+			if len(runeMap) > res {
+				res = len(runeMap)
+			}
+			cur = 1
 		}
 	}
 
