@@ -19,8 +19,8 @@ func lengthOfLongestSubstring(s string) int {
 				res = i - lastIdx + 1
 			}
 		} else {
-			if rIdx > lastIdx {
-				lastIdx = rIdx
+			if rIdx >= lastIdx {
+				lastIdx = rIdx + 1
 			}
 			if runeArr[i] != runeArr[lastIdx] {
 				if i-lastIdx+1 > res {
@@ -32,7 +32,6 @@ func lengthOfLongestSubstring(s string) int {
 				}
 			}
 
-			lastIdx = rIdx + 1
 			runeMap[runeArr[i]] = i
 		}
 	}
