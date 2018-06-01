@@ -9,30 +9,31 @@ func lengthOfLongestSubstring(s string) int {
 
 	runeArr := []rune(s)
 
-	cur := 0
+	lastIdx := 0
 
 	for i := 0; i < len(runeArr); i++ {
 
 		if rIdx, ok := runeMap[runeArr[i]]; !ok {
 			runeMap[runeArr[i]] = i
-			cur++
-			if len(runeMap) > res {
-				res = len(runeMap)
+			if i-lastIdx+1 > res {
+				res = i - lastIdx + 1
 			}
 		} else {
-			for k, v := range runeMap {
-				if v <= rIdx {
-					delete(runeMap, k)
+			if rIdx > lastIdx {
+				lastIdx = rIdx
+			}
+			if runeArr[i] != runeArr[lastIdx] {
+				if i-lastIdx+1 > res {
+					res = i - lastIdx + 1
+				}
+			} else {
+				if i-lastIdx > res {
+					res = i - lastIdx
 				}
 			}
+
+			lastIdx = rIdx + 1
 			runeMap[runeArr[i]] = i
-			if cur > res {
-				res = cur
-			}
-			if len(runeMap) > res {
-				res = len(runeMap)
-			}
-			cur = 1
 		}
 	}
 
@@ -46,4 +47,6 @@ func main() {
 	fmt.Printf("res=%d\n", lengthOfLongestSubstring(""))
 	fmt.Printf("res=%d\n", lengthOfLongestSubstring("c"))
 	fmt.Printf("res=%d\n", lengthOfLongestSubstring("dvdf"))
+	fmt.Printf("res=%d\n", lengthOfLongestSubstring("abba"))
+	fmt.Printf("res=%d\n", lengthOfLongestSubstring("tmmzuxt"))
 }
