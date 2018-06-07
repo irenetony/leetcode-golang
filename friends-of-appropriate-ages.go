@@ -5,34 +5,28 @@ import "fmt"
 func numFriendRequests(ages []int) int {
 	res := 0
 	qs(ages)
-	inCount := false
+
 	lastAge := -1
+	lastAgeId := -1
 	for i, age := range ages {
 		minAge := age/2 + 8
 		minAgeId := bss(ages, minAge)
-		if minAgeId != -1 {
-			if ages[minAgeId] == age {
-				if inCount {
-					if age != lastAge {
-						continue
-					}
-					if i == len(ages)-1 || ages[i+1] != minAge {
-						res += (i - minAgeId) * (i - minAgeId + 1)
-						inCount = false
-					}
+		if minAgeId != -1 && i >= minAgeId {
+			if i == len(ages)-1 || ages[i+1] != age {
+				if age != lastAge {
+					res += i - minAgeId
 				} else {
-					inCount = true
-					lastAge = age
+					res += (lastAgeId - minAgeId) * (i - lastAgeId + 1)
+					res += (i - lastAgeId) * (i - lastAgeId + 1)
 				}
-			} else if ages[minAgeId] < age {
-				res += i - minAgeId
-				inCount = false
 			}
-			//else if ages[minAgeId] > age {
-			//
-			//}
+		}
+		if age != lastAge {
+			lastAge = age
+			lastAgeId = i
 		}
 	}
+
 	return res
 }
 
@@ -115,9 +109,9 @@ func main() {
 	//nums := []int{9, 8, 11, 3, 6, 17, 15}
 	//qs(nums)
 	//fmt.Printf("%+v\n", nums)
-	//fmt.Printf("res=%d\n", numFriendRequests([]int{16, 16}))
-	//fmt.Printf("res=%d\n", numFriendRequests([]int{16, 17, 18}))
-	//fmt.Printf("res=%d\n", numFriendRequests([]int{20, 30, 100, 110, 120}))
-	//fmt.Printf("res=%d\n", numFriendRequests([]int{30, 29, 79, 119, 70}))
+	fmt.Printf("res=%d\n", numFriendRequests([]int{16, 16}))
+	fmt.Printf("res=%d\n", numFriendRequests([]int{16, 17, 18}))
+	fmt.Printf("res=%d\n", numFriendRequests([]int{20, 30, 100, 110, 120}))
+	fmt.Printf("res=%d\n", numFriendRequests([]int{30, 29, 79, 119, 70}))
 	fmt.Printf("res=%d\n", numFriendRequests([]int{8, 85, 24, 85, 69}))
 }
